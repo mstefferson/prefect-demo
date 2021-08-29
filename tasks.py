@@ -1,17 +1,21 @@
+import numpy as np
 import prefect
 from prefect import task
+
 from funcs import disp_value
-import numpy as np
 
 LOGGER = prefect.context.get("logger")
+
 
 @task
 def cool_task():
     LOGGER.info("I'm a cool task")
 
+
 @task
 def t_disp_value(y):
     disp_value(y, LOGGER)
+
 
 @task(log_stdout=True)
 def print_a_nice_message():
@@ -19,7 +23,7 @@ def print_a_nice_message():
     nice_messages = [
         "You got this!",
         "Keep up the hard work!",
-        "Wow, you're doing such a great job"
+        "Wow, you're doing such a great job",
     ]
     print(np.random.choice(nice_messages))
 
@@ -30,6 +34,7 @@ def threshold_check(y):
     if y > threshold:
         raise ValueError(f"y = {y} > {threshold}. That's bad")
     LOGGER.info(f"y = {y} <= {threshold}. I like that!")
+
 
 @task
 def summer(x):

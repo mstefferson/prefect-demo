@@ -1,16 +1,12 @@
-from prefect import Flow
-from prefect.storage import Git
-
-from prefect import Flow, task
-from prefect.storage import GitHub
-from prefect.run_configs import LocalRun
-from prefect import Flow, task, Parameter
-
 import numpy as np
-from tasks import cool_task, summer, print_a_nice_message, threshold_check, t_disp_value
+from prefect import Flow, Parameter, task
+from prefect.run_configs import LocalRun
+from prefect.storage import Git, GitHub
+
+from tasks import cool_task, print_a_nice_message, summer, t_disp_value, threshold_check
 
 with Flow("mega-flow-git") as flow:
-    x = Parameter('x', default = [0, 1, 2])
+    x = Parameter("x", default=[0, 1, 2])
     print_a_nice_message()
     y = summer(x)
     t_disp_value(y)
