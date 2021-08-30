@@ -3,8 +3,8 @@ from prefect import Flow, Parameter, task
 from prefect.run_configs import DockerRun
 from prefect.storage import Git, GitHub
 
-IMAGE = "prefecthq/prefect:0.15.4"
-# IMAGE = "prefect-dev:latest"
+# IMAGE = "prefecthq/prefect:0.15.4"
+IMAGE = "prefect-dev:latest"
 LOGGER = prefect.context.get("logger")
 
 
