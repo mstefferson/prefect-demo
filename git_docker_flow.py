@@ -22,16 +22,16 @@ def summer(x):
             sums += ii
     return sums
 
+with Flow("mega-flow-git-docker") as flow:
+    x = Parameter("x", default=[0, 1, 2])
+    y = summer(x)
 
 def main():
-    with Flow("mega-flow-git-docker") as flow:
-        x = Parameter("x", default=[0, 1, 2])
-        y = summer(x)
-
     flow.run()
     flow.run_config = DockerRun(labels=["docker"], image=IMAGE)
     flow.storage = GitHub(repo="mstefferson/prefect-demo", path="git_docker_flow.py")
     flow.register("my-demo")
+
 
 if __name__ == "__main__":
     main()
